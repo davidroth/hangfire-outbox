@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hangfire-outbox", "hangfire-outbox.csproj", "{882590B5-4AC9-4591-B679-8BA5B8CB8D94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{882590B5-4AC9-4591-B679-8BA5B8CB8D94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{882590B5-4AC9-4591-B679-8BA5B8CB8D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{882590B5-4AC9-4591-B679-8BA5B8CB8D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{882590B5-4AC9-4591-B679-8BA5B8CB8D94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F67BD1B-137D-49D2-8B13-79ED70BFA142}
+	EndGlobalSection
+EndGlobal
