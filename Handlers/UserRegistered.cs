@@ -4,22 +4,21 @@ using Fusonic.Extensions.MediatR;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace HangfireCqrsOutbox.Handlers
+namespace HangfireCqrsOutbox.Handlers;
+
+public record UserRegistered(int Id, string Forename, string Surname, string Email) : INotification;
+
+[OutOfBand]
+public class SendEmailAfterUserRegistered : INotificationHandler<UserRegistered>
 {
-    public record UserRegistered(int Id, string Forename, string Surname, string Email) : INotification;
+    private readonly ILogger<SendEmailAfterUserRegistered> logger;
 
-    [OutOfBand]
-    public class SendEmailAfterUserRegistered : INotificationHandler<UserRegistered>
+    public SendEmailAfterUserRegistered(ILogger<SendEmailAfterUserRegistered> logger)
+        => this.logger = logger;
+
+    public Task Handle(UserRegistered notification, CancellationToken cancellationToken)
     {
-        private readonly ILogger<SendEmailAfterUserRegistered> logger;
-
-        public SendEmailAfterUserRegistered(ILogger<SendEmailAfterUserRegistered> logger)
-            => this.logger = logger;
-
-        public Task Handle(UserRegistered notification, CancellationToken cancellationToken)
-        {
-            logger.LogInformation($"Sending email to {notification.Forename} {notification.Surname} ({notification.Email})");
-            return Task.CompletedTask;
-        }
+        logger.LogInformation($"Sending email to {notification.Forename} {notification.Surname} ({notification.Email})");
+        return Task.CompletedTask;
     }
 }
