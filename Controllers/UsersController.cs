@@ -18,7 +18,7 @@ public class UsersController : ControllerBase
     [HttpPost("Register")]
     public async Task Register(RegisterModel model)
     {
-        await mediator.Send(new RegisterUser.Command { Email = model.Email, Forename = model.Forename, Surname = model.Surname });
+        await mediator.Send(new RegisterUser.Command { Email = model.Email, Forename = model.Forename, Surname = model.Surname }, HttpContext.RequestAborted);
     }
 }
 

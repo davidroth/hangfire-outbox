@@ -27,10 +27,10 @@ public static class RegisterUser
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
             var user = new User(request.Forename, request.Surname, request.Email);
-            await dbContext.AddAsync(user);
-            await dbContext.SaveChangesAsync();
+            await dbContext.AddAsync(user, cancellationToken);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
-            await mediator.Publish(new UserRegistered(user.Id, request.Email, request.Forename, request.Surname));
+            await mediator.Publish(new UserRegistered(user.Id, request.Email, request.Forename, request.Surname), cancellationToken);
 
             return default;
         }
