@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using HangfireCqrsOutbox.Handlers;
+﻿using HangfireCqrsOutbox.Handlers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

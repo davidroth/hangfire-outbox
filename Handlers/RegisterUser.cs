@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using HangfireCqrsOutbox.Data;
+﻿using HangfireCqrsOutbox.Data;
 using HangfireCqrsOutbox.Domain;
 using MediatR;
 

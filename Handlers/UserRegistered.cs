@@ -1,8 +1,5 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Fusonic.Extensions.MediatR;
+﻿using Fusonic.Extensions.MediatR;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace HangfireCqrsOutbox.Handlers;
 

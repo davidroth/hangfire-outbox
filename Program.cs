@@ -8,10 +8,7 @@ using Hangfire.SqlServer;
 using HangfireCqrsOutbox.Data;
 using MediatR;
 using MediatR.Pipeline;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
@@ -55,9 +52,9 @@ Container.RegisterDecorator(typeof(INotificationHandler<>), typeof(Transactional
 
 Container.Collection.Register(typeof(IPipelineBehavior<,>), new[]
 {
-                    typeof(RequestPreProcessorBehavior<,>),
-                    typeof(RequestPostProcessorBehavior<,>)
-                });
+    typeof(RequestPreProcessorBehavior<,>),
+    typeof(RequestPostProcessorBehavior<,>)
+});
 
 Container.Collection.Register(typeof(IRequestPreProcessor<>), typeof(Program).Assembly);
 Container.Collection.Register(typeof(IRequestPostProcessor<,>), typeof(Program).Assembly);
