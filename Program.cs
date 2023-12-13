@@ -75,7 +75,7 @@ app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "hangfire_ou
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
-app.UseEndpoints(endpoints => endpoints.MapControllers());
+app.MapControllers();
 app.UseHangfireDashboard(options: new DashboardOptions { DisplayNameFunc = DashboardHelpers.FormatJobDisplayName });
 
 app.Run();

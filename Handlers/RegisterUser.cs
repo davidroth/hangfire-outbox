@@ -8,22 +8,13 @@ public static class RegisterUser
 {
     public record Command : IRequest
     {
-        public string Email { get; init; }
-        public string Forename { get; init; }
-        public string Surname { get; init; }
+        public required string Email { get; init; }
+        public required string Forename { get; init; }
+        public required string Surname { get; init; }
     }
 
-    public class Handler : IRequestHandler<Command>
+    public class Handler(UserContext dbContext, IMediator mediator) : IRequestHandler<Command>
     {
-        private readonly UserContext dbContext;
-        private readonly IMediator mediator;
-
-        public Handler(UserContext dbContext, IMediator mediator)
-        {
-            this.dbContext = dbContext;
-            this.mediator = mediator;
-        }
-
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
             var user = new User(request.Forename, request.Surname, request.Email);

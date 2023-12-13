@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HangfireCqrsOutbox.Data;
 
-public class UserContext : DbContext
+public class UserContext(DbContextOptions<UserContext> options) : DbContext(options)
 {
-    public UserContext(DbContextOptions<UserContext> options)
-        : base(options)
-    { }
-
     public DbSet<User> Users { get; set; }
 }
