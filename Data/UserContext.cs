@@ -1,7 +1,7 @@
-﻿using HangfireCqrsOutbox.Domain;
+﻿using HangfireOutbox.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace HangfireCqrsOutbox.Data;
+namespace HangfireOutbox.Data;
 
 public class UserContext(DbContextOptions<UserContext> options) : DbContext(options)
 {

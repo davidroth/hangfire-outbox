@@ -5,7 +5,7 @@ using Fusonic.Extensions.Hangfire;
 using Fusonic.Extensions.MediatR;
 using Hangfire;
 using Hangfire.SqlServer;
-using HangfireCqrsOutbox.Data;
+using HangfireOutbox.Data;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.EntityFrameworkCore;
@@ -16,13 +16,12 @@ using SimpleInjector.Lifestyles;
 var builder = WebApplication.CreateBuilder(args);
 var Container = new Container() { Options = { DefaultScopedLifestyle = new AsyncScopedLifestyle(), DefaultLifestyle = Lifestyle.Scoped } };
 
-const string dataSource = "Data Source=(localdb)\\mssqllocaldb; Initial Catalog=hangfire-outbox";
-
 var services = builder.Services;
 
 services.AddControllers();
-services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "hangfire_outbox", Version = "v1" }));
+services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hangfire Outbox", Version = "v1" }));
 
+var dataSource = builder.Configuration.GetConnectionString("app");
 services.AddHangfire(x =>
 {
     x.UseSerializerSettings(new Newtonsoft.Json.JsonSerializerSettings() { TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All });
@@ -70,7 +69,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "hangfire_outbox v1"));
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HangfireOutbox v1"));
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -84,5 +83,6 @@ static void MigrateContext(WebApplication app)
 {
     var scope = app.Services.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<UserContext>();
+    context.Database.EnsureDeleted();
     context.Database.EnsureCreated();
 }

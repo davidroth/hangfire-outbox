@@ -1,8 +1,8 @@
-﻿using HangfireCqrsOutbox.Handlers;
+﻿using HangfireOutbox.Handlers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HangfireCqrsOutbox.Controllers;
+namespace HangfireOutbox.Controllers;
 
 [ApiController]
 [Route("[controller]")]

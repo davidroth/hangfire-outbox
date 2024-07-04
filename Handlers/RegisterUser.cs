@@ -1,8 +1,8 @@
-﻿using HangfireCqrsOutbox.Data;
-using HangfireCqrsOutbox.Domain;
+﻿using HangfireOutbox.Data;
+using HangfireOutbox.Domain;
 using MediatR;
 
-namespace HangfireCqrsOutbox.Handlers;
+namespace HangfireOutbox.Handlers;
 
 public static class RegisterUser
 {

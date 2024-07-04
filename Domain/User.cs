@@ -1,4 +1,4 @@
-﻿namespace HangfireCqrsOutbox.Domain;
+﻿namespace HangfireOutbox.Domain;
 
 public class User(string forename, string surename, string email)
 {
