@@ -1,6 +1,5 @@
 ﻿using HangfireOutbox.Data;
 using HangfireOutbox.Domain;
-using MediatR;
 
 namespace HangfireOutbox.Handlers;
 

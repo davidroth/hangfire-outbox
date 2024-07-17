@@ -2,12 +2,9 @@ using Fusonic.Extensions.AspNetCore.Http;
 using Fusonic.Extensions.Common.Security;
 using Fusonic.Extensions.Common.Transactions;
 using Fusonic.Extensions.Hangfire;
-using Fusonic.Extensions.MediatR;
 using Hangfire;
 using Hangfire.SqlServer;
 using HangfireOutbox.Data;
-using MediatR;
-using MediatR.Pipeline;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SimpleInjector;
@@ -40,23 +37,13 @@ services.AddSimpleInjector(Container, options =>
 
 Container.Register<IUserAccessor, HttpContextUserAccessor>(Lifestyle.Singleton);
 Container.RegisterOutOfBandDecorators();
-Container.RegisterSingleton<IMediator, Mediator>();
-Container.RegisterInstance(new ServiceFactory(Container.GetInstance));
+Container.RegisterSingleton<IMediator, SimpleInjectorMediator>();
 
 Container.Register(typeof(IRequestHandler<,>), typeof(Program).Assembly);
 Container.Collection.Register(typeof(INotificationHandler<>), typeof(Program).Assembly);
 Container.RegisterSingleton<ITransactionScopeHandler, TransactionScopeHandler>();
 Container.RegisterDecorator(typeof(IRequestHandler<,>), typeof(TransactionalRequestHandlerDecorator<,>));
 Container.RegisterDecorator(typeof(INotificationHandler<>), typeof(TransactionalNotificationHandlerDecorator<>));
-
-Container.Collection.Register(typeof(IPipelineBehavior<,>), new[]
-{
-    typeof(RequestPreProcessorBehavior<,>),
-    typeof(RequestPostProcessorBehavior<,>)
-});
-
-Container.Collection.Register(typeof(IRequestPreProcessor<>), typeof(Program).Assembly);
-Container.Collection.Register(typeof(IRequestPostProcessor<,>), typeof(Program).Assembly);
 
 var app = builder.Build();
 MigrateContext(app);

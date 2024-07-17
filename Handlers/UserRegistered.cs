@@ -1,7 +1,4 @@
-﻿using Fusonic.Extensions.MediatR;
-using MediatR;
-
-namespace HangfireOutbox.Handlers;
+﻿namespace HangfireOutbox.Handlers;
 
 public record UserRegistered(int Id, string Forename, string Surname, string Email) : INotification;
 

@@ -1,5 +1,4 @@
 ﻿using HangfireOutbox.Handlers;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HangfireOutbox.Controllers;
