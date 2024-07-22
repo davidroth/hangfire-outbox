@@ -10,7 +10,7 @@ public class UsersController(IMediator mediator) : ControllerBase
     [HttpPost("Register")]
     public async Task Register(RegisterModel model)
     {
-        await mediator.Send(new RegisterUser.Command
+        await mediator.Send(new RegisterUser
         {
             Email = model.Email,
             Forename = model.Forename,

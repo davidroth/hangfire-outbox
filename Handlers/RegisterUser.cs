@@ -3,18 +3,15 @@ using HangfireOutbox.Domain;
 
 namespace HangfireOutbox.Handlers;
 
-public static class RegisterUser
+public record RegisterUser : ICommand
 {
-    public record Command : IRequest
-    {
-        public required string Email { get; init; }
-        public required string Forename { get; init; }
-        public required string Surname { get; init; }
-    }
+    public required string Email { get; init; }
+    public required string Forename { get; init; }
+    public required string Surname { get; init; }
 
-    public class Handler(UserContext dbContext, IMediator mediator) : IRequestHandler<Command>
+    public class Handler(UserContext dbContext, IMediator mediator) : IRequestHandler<RegisterUser>
     {
-        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(RegisterUser request, CancellationToken cancellationToken)
         {
             var user = new User(request.Forename, request.Surname, request.Email);
             await dbContext.AddAsync(user, cancellationToken);
