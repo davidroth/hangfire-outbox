@@ -1,21 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>HangfireOutbox</RootNamespace>
-	<ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<RootNamespace>HangfireOutbox</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UserSecretsId>816f6665-7b83-46f5-acea-b6577024632a</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Fusonic.Extensions.AspNetCore" Version="9.4.0" />
-    <PackageReference Include="Fusonic.Extensions.Hangfire" Version="9.4.0" />
-    <PackageReference Include="Hangfire" Version="1.8.14" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
-    <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="5.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
-    <Using Include="Fusonic.Extensions.Mediator" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Fusonic.Extensions.AspNetCore" Version="10.0.0" />
+		<PackageReference Include="Fusonic.Extensions.Hangfire" Version="10.0.0" />
+		<PackageReference Include="Hangfire" Version="1.8.22" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.1" />
+		<PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="5.5.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.0.1" />
+		<Using Include="Fusonic.Extensions.Mediator" />
+	</ItemGroup>
 
 </Project>

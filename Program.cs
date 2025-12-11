@@ -6,7 +6,7 @@ using Hangfire;
 using Hangfire.SqlServer;
 using HangfireOutbox.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 
@@ -37,13 +37,7 @@ services.AddSimpleInjector(container, options =>
 
 container.Register<IUserAccessor, HttpContextUserAccessor>(Lifestyle.Singleton);
 container.RegisterOutOfBandDecorators();
-container.RegisterSingleton<IMediator, SimpleInjectorMediator>();
-
-container.Register(typeof(IRequestHandler<,>), typeof(Program).Assembly);
-container.Collection.Register(typeof(INotificationHandler<>), typeof(Program).Assembly);
-container.RegisterSingleton<ITransactionScopeHandler, TransactionScopeHandler>();
-container.RegisterDecorator(typeof(IRequestHandler<,>), typeof(TransactionalRequestHandlerDecorator<,>));
-container.RegisterDecorator(typeof(INotificationHandler<>), typeof(TransactionalNotificationHandlerDecorator<>));
+container.RegisterMediator(services, [ typeof(Program).Assembly ]);
 
 var app = builder.Build();
 MigrateContext(app);
